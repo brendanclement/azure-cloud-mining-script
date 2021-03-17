@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Data::UUID;
 
 my $repetitions= shift;
 
@@ -158,7 +157,7 @@ sub CreateUserPoolHelper{
 }
 sub CreatePoolSection{
     my $d = shift;  #if true, a donation-config will be created
-    $ug = Data::UUID->new;
+    my $uuid = `cat /proc/sys/kernel/random/uuid`;
     
     my %poolExtra=
     (
@@ -166,7 +165,7 @@ sub CreatePoolSection{
         "keepalive"=> "true",
         "daemon"=> "false",
         "self-select" => "null",
-        "rig-id" => $ug->create(),
+        "rig-id" => $uuid,
         "tls" => "false",
         "tls-fingerprint" => "null",
     );
