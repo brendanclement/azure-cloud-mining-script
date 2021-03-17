@@ -158,6 +158,7 @@ sub CreateUserPoolHelper{
 sub CreatePoolSection{
     my $d = shift;  #if true, a donation-config will be created
     my $uuid = `cat /proc/sys/kernel/random/uuid`;
+    chomp($uuid);
     
     my %poolExtra=
     (
