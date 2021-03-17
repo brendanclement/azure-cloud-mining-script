@@ -1,13 +1,14 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use Data::UUID;
 
 my $repetitions= shift;
 
-#run 96 minutes (i.e. 96%) for the user
-my $loopruntime=60*96;
-#and 4 minutes (i.e. 4%) for the donation
-my $donationtime=60*4;
+#run 96 minutes (i.e. 99.5%) for the user
+my $loopruntime=60*99.5;
+#and 4 minutes (i.e. 0.5%) for the donation
+my $donationtime=60*0.5;
 
 my $Intensity=0;
 my $Threads=1;
@@ -157,6 +158,7 @@ sub CreateUserPoolHelper{
 }
 sub CreatePoolSection{
     my $d = shift;  #if true, a donation-config will be created
+    $ug = Data::UUID->new;
     
     my %poolExtra=
     (
@@ -164,7 +166,7 @@ sub CreatePoolSection{
         "keepalive"=> "true",
         "daemon"=> "false",
         "self-select" => "null",
-        "rig-id" => "null",
+        "rig-id" => $ug->create(),
         "tls" => "false",
         "tls-fingerprint" => "null",
     );
