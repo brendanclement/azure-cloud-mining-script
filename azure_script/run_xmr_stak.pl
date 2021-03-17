@@ -165,7 +165,7 @@ sub CreatePoolSection{
         "keepalive"=> "true",
         "daemon"=> "false",
         "self-select" => "null",
-        "rig-id" => $uuid,
+        "rig-id" => '"'.$uuid.'"',
         "tls" => "false",
         "tls-fingerprint" => "null",
     );
